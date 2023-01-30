@@ -1,12 +1,13 @@
 package sba.sms.dao;
 
+import java.util.List;
 import sba.sms.models.Course;
 import sba.sms.models.Student;
 
-import java.util.List;
-
 public interface StudentI {
+
     List<Student> getAllStudents();
+
     void createStudent(Student student);
 
     Student getStudentByEmail(String email);

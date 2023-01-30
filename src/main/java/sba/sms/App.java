@@ -1,5 +1,7 @@
 package sba.sms;
 
+import java.util.List;
+import java.util.Scanner;
 import lombok.extern.java.Log;
 import sba.sms.models.Course;
 import sba.sms.models.Student;
@@ -7,29 +9,26 @@ import sba.sms.services.CourseService;
 import sba.sms.services.StudentService;
 import sba.sms.utils.CommandLine;
 
-import java.util.List;
-import java.util.Scanner;
-
 /**
- * SBA Core Java Hibernate/Junit
- * Business Requirement:
- * task is to create a basic School Management System
- * where students can register for courses, and view the course assigned to them.
- *<br />
+ * SBA Core Java Hibernate/Junit Business Requirement: task is to create a basic
+ * School Management System where students can register for courses, and view
+ * the course assigned to them.
+ * <br />
  * App uses <br />
  * Initialize dummy data: {@link CommandLine#addData()} <br />
  * Two models: {@link Student} & {@link Course} <br />
  * Two services: {@link StudentService} & {@link CourseService}
  *
- * @author  Jafer Alhaboubi
+ * @author Jafer Alhaboubi
  * @since sba-core-java-hibernate-junit 1.0
- * 
+ *
  * Note: Do not change code in main method located in App.java
  */
 @Log
 public class App {
-    static final  StudentService studentService = new StudentService();
-    static final  CourseService courseService = new CourseService();
+
+    static final StudentService studentService = new StudentService();
+    static final CourseService courseService = new CourseService();
 
     public static void main(String[] args) {
 
@@ -55,7 +54,9 @@ public class App {
                         List<Course> courseList = courseService.getAllCourses();
                         System.out.printf("All courses:%n-----------------------------%n");
                         System.out.printf("%-2s | %-20s | %s%n", "ID", "Course", "Instructor");
-                        if (courseList.isEmpty()) System.out.printf("No courses to view%n");
+                        if (courseList.isEmpty()) {
+                            System.out.printf("No courses to view%n");
+                        }
                         for (Course course : courseList) {
                             System.out.printf("%-2d | %-20s | %s%n", course.getId(), course.getName(), course.getInstructor());
                         }
@@ -82,7 +83,9 @@ public class App {
         System.out.printf("%s courses:%n-----------------------------%n", email);
         System.out.printf("%-2s | %-20s | %s%n", "ID", "Course", "Instructor");
         List<Course> userCourses = studentService.getStudentCourses(email);
-        if (userCourses.isEmpty()) System.out.printf("No courses to view%n");
+        if (userCourses.isEmpty()) {
+            System.out.printf("No courses to view%n");
+        }
         for (Course course : userCourses) {
             System.out.printf("%-2d | %-20s | %s%n", course.getId(), course.getName(), course.getInstructor());
         }
